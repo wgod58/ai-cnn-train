@@ -1,27 +1,57 @@
-<html>
-<h3> About</h3>
-This repository contains the python code for the research paper "Convolutional neural network for stock price prediction using transfer learning". https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3756702
+# Bitcoin Price Prediction using CNN and Transfer Learning
 
-<br>
-<br>
-<h3> Envorinment and Installation</h3>
-Python code are stored in the code directory in a jupyter notebook format. The notebooks run on <a href="https://colab.research.google.com/notebooks/intro.ipynb">google colab</a>, 
-but they may not work in a local environment. The latest tensorflow version for the Convolutional Neural Network (CNN), which only works within the google colab environment is used.   
-Google drive is used to store the training and test images data. In order to access to the google drive from the google colab, you need to mount on google drive from the google colab. 
-Packages required for the execution of the code are installed at the begining of the jupyter notebooks. You also need to create directories in advance. 
-You need a directory for training data and another directory to store the test data. In each directory, you need to create three sub directories labeled as up, flat, or down.
+This repository contains the Python code for predicting Bitcoin price movements using Convolutional Neural Networks (CNN) with transfer learning.
 
-<br>
-<br>
-<h3> Jupyter Files </h3>
-Candle_stick2.ipynb is a file for downloading the data and creating candle sticks images. After creating candle stick images, the code automatically label the date, assign a unique file name, 
-and store them into the appropriate directories.
-<br><br>
-Candle_CNN.ipynb is a file for the CNN model. The candle stick images which are created by the Candle_stick2.ipynb and stored in the training directory are fed into the CNN model. 
-We use a pretrained CNN model <a href="https://github.com/tensorflow/models/tree/master/research/inception">Inception v3</a>, which is created by google. It is pretrained on Imagenet images. We add three additional layers at the end of the inception V3 and execute the training of the model for the additional layers. The parameters of the original inception v3 layers are not changed.
-The model are evaluated on the test set alongside the training.
+## About
 
-<br>
-<hr>
+This project implements a CNN-based approach for predicting Bitcoin price movements using candlestick chart images. The model uses transfer learning with Google's Inception V3 architecture pre-trained on ImageNet.
 
-</html>
+## Environment and Installation
+
+The code is organized in Jupyter notebooks and runs on Python with TensorFlow. The main requirements are:
+
+- TensorFlow
+- Pandas
+- Matplotlib
+- mplfinance
+- Requests (for data download)
+
+The notebooks are designed to run in any Python environment with the required packages installed.
+
+## Data Collection and Preparation
+
+- `downLoadBtcDayDate.ipynb`: Downloads historical Bitcoin price data from Binance API and saves it to CSV files
+- `Candle_stick2.ipynb`: Creates candlestick chart images from the price data
+
+## Model Training and Prediction
+
+- `Candle_CNN.ipynb`: Implements the CNN model using transfer learning with Inception V3
+  - Uses pre-trained Inception V3 model with additional custom layers
+  - Trains only the additional layers while keeping original Inception V3 weights frozen
+  - Predicts price movement direction (up/down/flat)
+
+## Model Architecture
+
+- Base model: Inception V3 pre-trained on ImageNet
+- Additional layers added for price movement classification
+- Training performed only on the additional layers while keeping base model frozen
+- Input: Candlestick chart images
+- Output: Price movement prediction (3 classes - up/down/flat)
+
+## Results
+
+The model achieves the following accuracy:
+
+- One day ahead: ~0.45 test accuracy
+- Three days ahead: ~0.47 test accuracy
+- Five days ahead: ~0.41 test accuracy
+
+## Usage
+
+1. Run `downLoadBtcDayDate.ipynb` to download historical price data
+2. Run `Candle_stick2.ipynb` to generate candlestick images
+3. Run `Candle_CNN.ipynb` to train and evaluate the model
+
+## References
+
+This implementation is based on the research paper "Convolutional neural network for stock price prediction using transfer learning" (<https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3756702>)
