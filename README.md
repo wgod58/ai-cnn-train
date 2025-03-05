@@ -23,9 +23,5 @@ The model are evaluated on the test set alongside the training.
 
 <br>
 <hr>
-<h3>Contact</h3>
 
-Yohei Komori <br>
-WorldQuant University<br>
-Email: hurumori@gmail.com
 </html>
