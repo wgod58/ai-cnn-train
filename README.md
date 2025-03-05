@@ -44,7 +44,6 @@ The model achieves the following accuracy:
 
 - One day ahead: ~0.45 test accuracy
 - Three days ahead: ~0.47 test accuracy
-- Five days ahead: ~0.53 test accuracy
 
 ## Usage
 
